@@ -1,1 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Friend 💙</title>
 
+<style>
+body{
+margin:0;
+font-family:'Poppins', sans-serif;
+background: linear-gradient(135deg,#667eea,#764ba2,#ff758c);
+color:white;
+overflow-x:hidden;
+}
+
+/* SECTION STYLE */
+.section{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+opacity:0;
+transform:translateY(50px);
+transition:1s;
+}
+
+.section.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/* SLIDESHOW */
+.slideshow{
+width:90%;
+max-width:400px;
+height:250px;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:20px;
+box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+.slideshow img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:none;
+}
+
+.slideshow img.active{
+display:block;
+animation:fade 1s;
+}
+
+@keyframes fade{
+from{opacity:0}
+to{opacity:1}
+}
+
+/* TEXT */
+.text{
+font-size:22px;
+max-width:600px;
+line-height:1.6;
+}
+
+/* HEART */
+.heart{
+font-size:30px;
+margin-top:15px;
+animation:beat 1s infinite;
+}
+
+@keyframes beat{
+0%,100%{transform:scale(1)}
+50%{transform:scale(1.2)}
+}
+</style>
+</head>
+
+<body>
+
+<!-- SECTION 1 -->
+<div class="section show">
+<div class="slideshow">
+<img src="https://picsum.photos/id/1011/600/400" class="active">
+<img src="https://picsum.photos/id/1015/600/400">
+<img src="https://picsum.photos/id/1025/600/400">
+</div>
+<h2>Scroll Down 👇</h2>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section">
+<div class="text">From strangers to best friends… 💙</div>
+</div>
+
+<!-- SECTION 3 -->
+<div class="section">
+<div class="text">We shared laughs, secrets, and memories ✨</div>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section">
+<div class="text">No matter what happens… I’ll always stand with you ❤️</div>
+<div class="heart">💙</div>
+</div>
+
+<script>
+
+// SLIDESHOW
+let slides = document.querySelectorAll(".slideshow img");
+let index = 0;
+
+setInterval(()=>{
+slides[index].classList.remove("active");
+index = (index+1)%slides.length;
+slides[index].classList.add("active");
+},3000);
+
+// SCROLL ANIMATION
+let sections = document.querySelectorAll(".section");
+
+window.addEventListener("scroll",()=>{
+sections.forEach(sec=>{
+let top = sec.getBoundingClientRect().top;
+if(top < window.innerHeight - 100){
+sec.classList.add("show");
+}
+});
+});
+
+</script>
+
+</body>
+</html>
